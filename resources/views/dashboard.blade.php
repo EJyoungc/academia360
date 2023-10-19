@@ -125,8 +125,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <h4 class="card-title">Product Sales</h4>
-                            <h5 class="card-subtitle">Overview of Latest Month</h5>
+                            <h4 class="card-title">Class performance</h4>
+                            <h5 class="card-subtitle">Overview</h5>
                         </div>
                         <div class="ml-auto">
                             <ul class="list-inline font-12 dl m-r-10">
@@ -145,7 +145,7 @@
 
         </div>
         <!-- Column -->
-        <div class="col-md-3">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body bg-light-info">
                     <div class="d-flex align-items-center m-t-10 m-b-20">
@@ -178,7 +178,7 @@
             </div>
         </div>
         <!-- Column -->
-        <div class="col-md-3">
+        {{-- <div class="col-md-3">
             <div class="card">
                 <div class="card-body bg-light-warning text-white">
                     <div id="weeksales-bar" class="position-relative" style="height: 270px"></div>
@@ -198,7 +198,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <!-- ============================================================== -->
     <!-- Email campaign chart -->
@@ -206,7 +206,7 @@
     <!-- ============================================================== -->
     <!-- Top Selliing Products -->
     <!-- ============================================================== -->
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
@@ -336,14 +336,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ============================================================== -->
     <!-- Top Selliing Products -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- Table -->
     <!-- ============================================================== -->
-    <div class="row">
+    {{-- <div class="row">
         <!-- Column -->
         <div class="col-lg-4 col-md-12">
             <div class="row">
@@ -413,14 +413,14 @@
             </div>
         </div>
 
-    </div>
+    </div> --}}
     <!-- ============================================================== -->
     <!-- Table -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- Recent comment and chats -->
     <!-- ============================================================== -->
-    <div class="row">
+    {{-- <div class="row">
         <!-- column -->
         <div class="col-lg-6">
             <div class="card">
@@ -649,7 +649,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 
