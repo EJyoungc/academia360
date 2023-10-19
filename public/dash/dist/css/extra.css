@@ -1,0 +1,9 @@
+.folder:hover {
+    color: #7460ee;
+    background-color: #7360ee31;
+}
+.folder-selected{
+    color:#7460ee;
+    background-color: #7360ee31;
+    border:1px solid #7460ee !important ;
+}
