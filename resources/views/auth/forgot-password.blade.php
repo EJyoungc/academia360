@@ -10,7 +10,7 @@ style="background:url({{ asset('dash/assets/images/big/auth-bg.jpg') }}) no-repe
     <div id="loginform">
         <div class="logo">
             <span class="db"><img src="{{ asset('dash/assets/images/logo-icon.png') }}" alt="logo" /></span>
-            
+             
         </div>
         <!-- Form -->
         <div class="row">
