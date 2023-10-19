@@ -70,7 +70,7 @@
         <div class="page-wrapper">
             @yield('bread')
             <div class="container-fluid">
-                <i class="fa fa-bars" aria-hidden="true"></i>
+                
                 {{ $slot }}
 
                 
