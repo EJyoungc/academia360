@@ -10,7 +10,8 @@
     set MESSAGE=Hello, Bot!
 
     :: Build the cURL command to send the message.
-    curl -X POST "https://micromek.net/academia/bot/telegram" ^
+    @REM curl -X POST "https://micromek.net/academia/bot/telegram" ^
+    curl -X POST "http://localhost/ha1/bot/telegram" ^
     -d "chat_id=YOUR_CHAT_ID" ^
     -d "text=%MESSAGE%"
 
