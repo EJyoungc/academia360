@@ -37,6 +37,7 @@ class BotController extends Controller
         ]);
         $firstname = $request['message']['from']['first_name'] ?? "";
         $message_chat_id = $request['message']['chat']['id'] ?? "";
+        $message_id =$request['message']['message_id'] ?? "";
 
         $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
         if ($chat2 == null) {
@@ -50,7 +51,12 @@ class BotController extends Controller
         } else {
 
             $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-            $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->send();
+            $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
+            // $chat2->message('hello world')->keyboard(Keyboard::make()->buttons([
+            //     Button::make("🗑️ Delete")->action("delete")->param('id', $notification->id),  
+            //     Button::make("📖 Mark as Read")->action("read")->param('id', $notification->id),  
+            //     Button::make("👀 Open")->url('https://test.it'),  
+            // ])->chunk(2))->send();
         }
 
         // $chat = $telegraph_bot->chats()->create([
