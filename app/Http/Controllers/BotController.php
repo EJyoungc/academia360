@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
+use DefStudio\Telegraph\Models\TelegraphBot;
 use Illuminate\Http\Request;
 use DefStudio\Telegraph\Models\TelegraphChat;
 use DefStudio\Telegraph\Telegraph;
@@ -17,7 +18,7 @@ class BotController extends Controller
     {
         // $update = json_decode($request->getContent(), true);
         // event( new NewMessage($update));
-
+        $bot = TelegraphBot::find(1);
 
         Log::channel('telegram')->debug('Incoming Telegram Webhook Data', [
             // 'all'=>$request->all(),
@@ -39,7 +40,7 @@ class BotController extends Controller
 
         $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
         if ($chat2 == null) {
-            $chat = TelegraphChat::create([
+           $chat = $bot->chats()->create([
                 'chat_id' => $message_chat_id,
                 'name' => $firstname,
             ]);
