@@ -30,11 +30,18 @@ class BotController extends Controller
             'message_type' => $request['entities'][0]['type']?? "",
             'query'=>''
         ]);
+        $firstname =$request['message']['from']['first_name']?? "";
+        $message_chat_id = $request['message']['chat']['id']?? "";
+
     
         // Your bot logic here
     
         // return 'OK';
-        $chat = TelegraphChat::find(1);
+        $chat = $telegraph_bot->chats()->create([
+            'chat_id' => $firstname,
+            'name' => $message_chat_id,
+        ]);
+        // $chat = TelegraphChat::find(1);
         // // dd($chat);
         $chat->html("<strong>Hello!</strong>\n\nI'm here!")->send();
         // Process the update (e.g., respond to user messages)
