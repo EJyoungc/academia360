@@ -38,10 +38,10 @@ class BotController extends Controller
         // Your bot logic here
     
         // return 'OK';
-        $chat = $telegraph_bot->chats()->create([
-            'chat_id' => $firstname,
-            'name' => $message_chat_id,
-        ]);
+        // $chat = $telegraph_bot->chats()->create([
+        //     'chat_id' => $firstname,
+        //     'name' => $message_chat_id,
+        // ]);
         // $chat = TelegraphChat::find(1);
         // // dd($chat);
         $chat->html("<strong>Hello!</strong>\n\nI'm here!")->send();
