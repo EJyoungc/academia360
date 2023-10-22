@@ -22,7 +22,7 @@ class BotController extends Controller
 
         Log::channel('telegram')->debug('Incoming Telegram Webhook Data', [
             // 'all'=>$request->all(),
-            // 'chat_test' => $chat2,
+            'chat_test' => $bot->chats(),
             'update' => $request['update_id'] ?? "",
             'message_id' => $request['message']['message_id'] ?? "",
             'message_from_id' => $request['message']['from']['id'] ?? "",
