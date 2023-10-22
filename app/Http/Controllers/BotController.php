@@ -27,7 +27,7 @@ class BotController extends Controller
             'message_type' => $request['message']['from']['type'],
             'message_chat_id' => $request['message']['chat']['id'],
             'message_body' => $request['message']['text'],
-            'message_body' => $request['entities'][0]['type'],
+            'message_type' => $request['entities'][0]['type'],
 
             // 'chat_id' => $request['chat'],
         ]);
