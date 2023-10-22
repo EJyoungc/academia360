@@ -13,35 +13,49 @@ class BotController extends Controller
     //
 
 
-    public function telegram(Request $request){
+    public function telegram(Request $request)
+    {
         // $update = json_decode($request->getContent(), true);
         // event( new NewMessage($update));
-        Telegraph::message('hello world')->send();
-        $chat2 = TelegraphChat::where("chat_id",$request['message']['chat']['id']?? "")->first();
+
+
         Log::channel('telegram')->debug('Incoming Telegram Webhook Data', [
             // 'all'=>$request->all(),
-            'chat_test'=>$chat2,
-            'update' => $request['update_id']?? "",
-            'message_id' => $request['message']['message_id']?? "",
-            'message_from_id' => $request['message']['from']['id']?? "",
-            'bot' => $request['message']['from']['is_bot']?? "",
-            'message_firstname' => $request['message']['from']['first_name']?? "",
-            'message_lastname' => $request['message']['from']['last_name']?? "",
-            'message_type' => $request['message']['from']['type']?? "",
-            'message_chat_id' => $request['message']['chat']['id']?? "",
+            'chat_test' => $chat2,
+            'update' => $request['update_id'] ?? "",
+            'message_id' => $request['message']['message_id'] ?? "",
+            'message_from_id' => $request['message']['from']['id'] ?? "",
+            'bot' => $request['message']['from']['is_bot'] ?? "",
+            'message_firstname' => $request['message']['from']['first_name'] ?? "",
+            'message_lastname' => $request['message']['from']['last_name'] ?? "",
+            'message_type' => $request['message']['from']['type'] ?? "",
+            'message_chat_id' => $request['message']['chat']['id'] ?? "",
             'message_body' => $request['message']['text'] ?? "",
-            'message_type' => $request['entities'][0]['type']?? "",
-            'query'=>''
+            'message_type' => $request['entities'][0]['type'] ?? "",
+            'query' => ''
         ]);
-        $firstname =$request['message']['from']['first_name']?? "";
-        $message_chat_id = $request['message']['chat']['id']?? "";
-        $chat = $telegraph_bot->chats()->create([
-                'chat_id' => $firstname,
-                'name' => $message_chat_id,
+        $firstname = $request['message']['from']['first_name'] ?? "";
+        $message_chat_id = $request['message']['chat']['id'] ?? "";
+
+        $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
+        if ($chat2 == null) {
+            $chat = TelegraphChat::create([
+                'chat_id' => $message_chat_id,
+                'name' => $firstname,
             ]);
-    
+            $chat->html("<strong>Hello!</strong>\n\nI'm here!")->send();
+
+            // $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
+        } else {
+        }
+
+        // $chat = $telegraph_bot->chats()->create([
+        //         'chat_id' => $firstname,
+        //         'name' => $message_chat_id,
+        //     ]);
+
         // Your bot logic here
-    
+
         // return 'OK';
         // $chat = $telegraph_bot->chats()->create([
         //     'chat_id' => $firstname,
