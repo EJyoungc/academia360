@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
+use DefStudio\Telegraph\Keyboard\Button;
+use DefStudio\Telegraph\Keyboard\Keyboard;
 use DefStudio\Telegraph\Models\TelegraphBot;
 use Illuminate\Http\Request;
 use DefStudio\Telegraph\Models\TelegraphChat;
@@ -47,16 +49,16 @@ class BotController extends Controller
             ]);
             $chat->html("<strong>Hello!</strong>\n\nI'm here!")->send();
 
-            // $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
+           
         } else {
 
             $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
             $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
-            // $chat2->message('hello world')->keyboard(Keyboard::make()->buttons([
-            //     Button::make("🗑️ Delete")->action("delete")->param('id', $notification->id),  
-            //     Button::make("📖 Mark as Read")->action("read")->param('id', $notification->id),  
-            //     Button::make("👀 Open")->url('https://test.it'),  
-            // ])->chunk(2))->send();
+            $chat2->message('hello world')->keyboard(Keyboard::make()->buttons([
+                Button::make("🗑️ Delete")->action("delete")->param('id', 1),  
+                Button::make("📖 Mark as Read")->action("read")->param('id', 2),  
+                Button::make("👀 Open")->url('https://test.it'),  
+            ])->chunk(2))->send();
         }
 
         // $chat = $telegraph_bot->chats()->create([
