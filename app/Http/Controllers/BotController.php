@@ -23,9 +23,9 @@ class BotController extends Controller
         // Your bot logic here
     
         // return 'OK';
-        $chat = TelegraphChat::find(1);
-        // dd($chat);
-        $chat->html("<strong>Hello!</strong>\n\nI'm here!")->send();
+        // $chat = TelegraphChat::find(1);
+        // // dd($chat);
+        // $chat->html("<strong>Hello!</strong>\n\nI'm here!")->send();
         // Process the update (e.g., respond to user messages)
         // Implement your bot's logic here
 
