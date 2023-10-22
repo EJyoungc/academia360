@@ -50,7 +50,7 @@ class BotController extends Controller
         } else {
 
             $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-            $chat2->html("<strong>Hello!</strong>\n\nI'm here! again")->send();
+            $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->send();
         }
 
         // $chat = $telegraph_bot->chats()->create([
