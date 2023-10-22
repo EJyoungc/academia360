@@ -52,13 +52,41 @@ class BotController extends Controller
            
         } else {
 
-            $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-            $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
-            $chat2->message('hello world')->keyboard(Keyboard::make()->buttons([
-                Button::make("🗑️ Delete")->action("delete")->param('id', 1),  
-                Button::make("📖 Mark as Read")->action("read")->param('id', 2),  
-                Button::make("👀 Open")->url('https://test.it'),  
-            ])->chunk(2))->send();
+            // comand checker
+
+
+            switch ($request['message']['text']) {
+                case '/menu':
+                    # code.
+                    $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
+                    // $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
+                    $chat2->html("<strong>Hello $firstname !</strong> \n\n Please Select the Option Available")->keyboard(Keyboard::make()->buttons([
+                        Button::make("Class")->action("delete")->param('id', 1),  
+                        Button::make("📖 Students")->action("read")->param('id', 2),  
+                        // Button::make("👀 ")->url('https://test.it'),  
+                    ])->chunk(2))->send();
+                    
+                    
+                    
+                    
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+
+
+
+
+
+
+
+
+
+
+
+           
         }
 
         // $chat = $telegraph_bot->chats()->create([
