@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use Illuminate\Http\Request;
 use DefStudio\Telegraph\Models\TelegraphChat;
 
@@ -12,6 +13,7 @@ class BotController extends Controller
 
     public function telegram(Request $request){
         $update = json_decode($request->getContent(), true);
+        event( new NewMessage($update));
         // $chat = TelegraphChat::find(1);
         // // dd($chat);
         // $chat->html("<strong>Hello!</strong>\n\nI'm here!")->send();

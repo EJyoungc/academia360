@@ -18,7 +18,7 @@
     <link href="{{ asset('dash/dist/css/extra.css') }}" rel="stylesheet">
     <link href="{{ asset('dash/dist/css/style.min.css') }}" rel="stylesheet">
     @livewireStyles
-<link rel="stylesheet" href="{{ asset('js/sweetalert2.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/sweetalert2.css') }}">
     <!-- Scripts -->
     <script src="{{ asset('dash/assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
@@ -48,9 +48,6 @@
     <script src="{{ asset('dash/assets/libs/raphael/raphael.min.js') }}"></script>
     <script src="{{ asset('assets/js/alpine.js') }}"></script>
 
-    
-
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 </head>
 
 <body class="font-sans antialiased bg-light">
@@ -70,10 +67,10 @@
         <div class="page-wrapper">
             @yield('bread')
             <div class="container-fluid">
-                
+
                 {{ $slot }}
 
-                
+
             </div>
 
             @include('aside.footer')
@@ -81,22 +78,28 @@
 
     </div>
 
-
-
-
-
-
-
-
     @livewireScripts
 
     @stack('scripts')
     <x-livewire-alert::scripts />
     <!-- Vendor JS Files -->
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
-   
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script>
+        window.onload = function() {
+            var channel = window.echo.private('home');
+            channel.listen('NewMessage', (e) => {
+                console.log(e.message);
+            });
 
-    
+            var channel2 = window.echo.channel('home');
+            channel2.listen('NewMessage', (e) => {
+                console.log(e.message);
+            });
+
+        }
+    </script>
+
 
 </body>
 

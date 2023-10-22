@@ -40,6 +40,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PublicController::class, 'index'])->name('root.index');
 
+Route::get('/test',[PublicController::class,'test_page' ]);
 
 
 
