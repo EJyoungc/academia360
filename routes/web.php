@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PublicController::class, 'index'])->name('root.index');
 
 Route::get('/test',[PublicController::class,'test_page' ]);
+Route::post('bot/telegram',[BotController::class,'telegram'])->name('bot.tel');
 
 
 
@@ -75,7 +76,6 @@ Route::middleware([
     Route::get('/timetables/class',TimetableClassesLivewire::class)->name('timetable.class');
     Route::get('/slots',SlotsLivewire::class)->name('slots');
     Route::get('pdf/timetable/term/{term_id}/class/{class_id}',[PdfController::class,'term_timetable'])->name('pdf.term_timetable');
-    Route::post('bot/telegram',[BotController::class,'telegram'])->name('bot.tel');
     Route::post('bot/whatsapp',[BotController::class,'whatsapp'])->name('bot.wap');
     
     // Route::get('/payments/records', LivewirePayments::class)->name('payments');
