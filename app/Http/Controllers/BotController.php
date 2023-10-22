@@ -54,6 +54,8 @@ class BotController extends Controller
 
             // comand checker
 
+            
+
 
             switch ($request['message']['text']) {
                 case '/menu':
@@ -61,18 +63,16 @@ class BotController extends Controller
                     $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
                     // $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
                     $chat2->html("<strong>Hello $firstname !</strong> \n\n Please Select the Option Available")->keyboard(Keyboard::make()->buttons([
-                        Button::make("Class")->action("delete")->param('id', 1),  
-                        Button::make("📖 Students")->action("read")->param('id', 2),  
+                        Button::make("Class")->action("delete"),  
+                        Button::make("📖 Students")->action("read"),  
                         // Button::make("👀 ")->url('https://test.it'),  
                     ])->chunk(2))->send();
-                    
-                    
                     
                     
                     break;
                 
                 default:
-                    # code...
+                    
                     break;
             }
 
@@ -110,4 +110,49 @@ class BotController extends Controller
         // Send a response (e.g., 200 OK)
         return response('OK', 200);
     }
+
+
+    private function handleCommand($update)
+    {
+        $command = $update->getCommand();
+
+        switch ($command) {
+            case 'start':
+                $this->showMainMenu($update);
+                break;
+            case 'menu1':
+                $this->showMenu1($update);
+                break;
+            case 'menu2':
+                $this->showMenu2($update);
+                break;
+            default:
+                $this->showMainMenu($update);
+                break;
+        }
+    }
+
+
+    private function showMenu1($update)
+    {
+        $text = "You are in Menu 1. What would you like to do next?";
+
+        
+    }
+
+    // Show Menu 2
+    private function showMenu2($update)
+    {
+        $text = "You are in Menu 2. What would you like to do next?";
+
+        Telegram::sendMessage([
+            'chat_id' => $update->getChat()->getId(),
+            'text' => $text,
+        ]);
+    }
+
+
+
+
+
 }
