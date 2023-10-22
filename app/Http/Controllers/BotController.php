@@ -15,7 +15,7 @@ class BotController extends Controller
     public function telegram(Request $request){
         // $update = json_decode($request->getContent(), true);
         // event( new NewMessage($update));
-        $chat2 = TelegraphChat::find(1);
+        $chat2 = TelegraphChat::where("chat_id",$request['message']['chat']['id']?? "")->first();
         Log::channel('telegram')->debug('Incoming Telegram Webhook Data', [
             // 'all'=>$request->all(),
             'chat_test'=>$chat2,
