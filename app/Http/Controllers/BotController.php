@@ -17,7 +17,10 @@ class BotController extends Controller
         // event( new NewMessage($update));
 
         Log::channel('telegram')->debug('Incoming Telegram Webhook Data', [
-            'data' => $request['update_id'] .'and ' . $request['chat'] ,
+            'all'=>$request->all(),
+            'update' => $request['update_id'],
+            'name' => $request['update_id'],
+            'chat_id' => $request['chat'],
         ]);
     
         // Your bot logic here
