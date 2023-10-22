@@ -20,7 +20,10 @@ class BotController extends Controller
             'all'=>$request->all(),
             'update' => $request['update_id'],
             'message_id' => $request['message']['message_id'],
-            'message_from' => $request['message']['from'],
+            'message_from_id' => $request['message']['from']['id'],
+            'bot' => $request['message']['from']['is_bot'],
+            'message_firstname' => $request['message']['from']['first_name'],
+            'message_lastname' => $request['message']['from']['last_name'],
             // 'chat_id' => $request['chat'],
         ]);
     
