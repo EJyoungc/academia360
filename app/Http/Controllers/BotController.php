@@ -76,7 +76,7 @@ class BotController extends Controller
                     $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
                     // $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
                     $chat2->html("<strong>Hello $firstname !</strong> \n\n Please Select the Option Available")->keyboard(Keyboard::make()->buttons([
-                        Button::make("Class")->action("test"),
+                        Button::make("Classes")->action("view")->param('classes','all'),
                         Button::make("📖 Students")->action("read")->param('id','43'),
                         // Button::make("👀 ")->url('https://test.it'),  
                     ])->chunk(2))->send();
