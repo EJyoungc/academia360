@@ -39,7 +39,7 @@ class BotController extends Controller
             'message_type' => $request['entities'][0]['type'] ?? "",
             'query' => ''
         ];
-        Log::channel('telegram')->debug('Data feed Data', [
+        Log::channel('telegram')->debug('Data feed', [
             'all'=>$request->all(),
             // 'chat_test' => ,
             // 'update' => $request['update_id'] ?? "",
