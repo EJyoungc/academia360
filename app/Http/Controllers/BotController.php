@@ -156,9 +156,9 @@ class BotController extends Controller
     {
         $text = "You are in Menu 2. What would you like to do next?";
 
-        Telegram::sendMessage([
-            'chat_id' => $update->getChat()->getId(),
-            'text' => $text,
-        ]);
+        // Telegram::sendMessage([
+        //     'chat_id' => $update->getChat()->getId(),
+        //     'text' => $text,
+        // ]);
     }
 }
