@@ -48,7 +48,7 @@ class BotController extends Controller
         ]);
 
         $response = Telegram::sendMessage([
-            'chat_id' => 'CHAT_ID',
+            'chat_id' => $request['message']['chat']['id'],
             'text' => 'Hello World'
         ]);
 
