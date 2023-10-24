@@ -94,7 +94,7 @@ class BotController extends Controller
                     $buttons = [];
 
                     foreach ($classtype as $item) {
-                        $buttons[] = Button::make("$item->name")->action("$item->id");
+                        array_push($buttons,Button::make("$item->name")->action("$item->id"));
                         
                     }
 
