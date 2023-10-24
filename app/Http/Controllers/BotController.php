@@ -98,6 +98,9 @@ class BotController extends Controller
                         
                     }
 
+                Log::channel('telegram')->debug('info not selected',['test'=>$buttons]);
+
+
                     $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")
                     ->keyboard(Keyboard::make()->buttons([
                         $buttons  
