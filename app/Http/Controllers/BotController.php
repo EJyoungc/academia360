@@ -93,70 +93,14 @@ class BotController extends Controller
         
 
         
-        } else {
-
-            // comand checker
-
-            switch ($request['message']['text']) {
-                case '/menu':
-                    # code.
-                   
-
-                    break;
-                case '/years':
-
-
-
-                    break;
-                default:
-                Log::channel('telegram')->debug('info not selected',[]);
-                    break;
-            }
-        }
+        
 
 
         return response('OK', 200);
     }
 
 
-    private function handleCommand($update)
-    {
-        $command = $update->getCommand();
-
-        switch ($command) {
-            case 'start':
-                $this->showMainMenu($update);
-                break;
-            case 'menu1':
-                $this->showMenu1($update);
-                break;
-            case 'menu2':
-                $this->showMenu2($update);
-                break;
-            default:
-                $this->showMainMenu($update);
-                break;
-        }
-    }
-
-    public function  test()
-    {
-        $this->chat->html("test")->send();
-    }
-
-    private function showMenu1($update)
-    {
-        $text = "You are in Menu 1. What would you like to do next?";
-    }
-
-    // Show Menu 2
-    private function showMenu2($update)
-    {
-        $text = "You are in Menu 2. What would you like to do next?";
-
-        // Telegram::sendMessage([
-        //     'chat_id' => $update->getChat()->getId(),
-        //     'text' => $text,
-        // ]);
-    }
 }
+
+
+
