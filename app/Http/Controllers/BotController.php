@@ -44,7 +44,7 @@ class BotController extends Controller
         Log::channel('telegram')->debug('Data feed', [
             'all' => $request->all(),
             // 'test' => Telegram::getWebhookUpdate(),
-            'test'=>$response, 
+            // 'test'=>$response, 
         ]);
 
         $response = Telegram::sendMessage([
