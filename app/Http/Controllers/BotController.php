@@ -94,11 +94,13 @@ class BotController extends Controller
                         // $buttons[] = Button::make("📖 Students")->action("read")->param('id', '43');
                     }
 
+                    
+
                     // Create the keyboard with the buttons array
                     $keyboard = Keyboard::make()->buttons($buttons)->chunk(2);
 
-                    $chat2->html("<strong>Hello $firstname!</strong>\n\nPlease select the option available")
-                        ->keyboard($keyboard)
+                    $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")
+                        // ->keyboard($keyboard)
                         ->send();
 
 
