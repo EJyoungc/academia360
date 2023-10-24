@@ -91,11 +91,6 @@ class BotController extends Controller
             // 'query' => ''
         ]);
         
-
-        
-        
-
-
         return response('OK', 200);
     }
 
