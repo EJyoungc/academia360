@@ -38,6 +38,10 @@ class BotController extends Controller
     public function telegram(Request $request)
     {
 
+        Log::channel('telegram')->debug('Data feed', [
+            'all' => $request->all(),
+            
+        ]);
 
         $response = $telegram->sendMessage([
             'chat_id' => 'CHAT_ID',
