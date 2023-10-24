@@ -88,25 +88,21 @@ class BotController extends Controller
 
                     $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
                     // $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
-                    $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")->keyboard(Keyboard::make()->buttons([
-                        Button::make("Classes")->action("all"),
-                        Button::make("📖 Students")->action("read")->param('id', '43'),
-                        // Button::make("👀 ")->url('https://test.it'),  
-                    ])->chunk(2))->send();
-                    // $classtype = ClassRoomType::all();
+                   
+                    $classtype = ClassRoomType::all();
                     // $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-                    // $buttons = [];
+                    $buttons = [];
 
-                    // foreach ($classtype as $item) {
-                    //     $buttons[] = Button::make("$item->name")->action("$item->id");
+                    foreach ($classtype as $item) {
+                        $buttons[] = Button::make("$item->name")->action("$item->id");
                         
-                    // }
+                    }
 
-                    // $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")
-                    // // ->keyboard(Keyboard::make()->buttons([
-                    // //     $buttons  
-                    // // ])->chunk(2))
-                    // ->send();
+                    $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")
+                    // ->keyboard(Keyboard::make()->buttons([
+                    //     $buttons  
+                    // ])->chunk(2))
+                    ->send();
 
                     
 
