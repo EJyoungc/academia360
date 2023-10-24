@@ -28,13 +28,13 @@ class BotController extends Controller
         
 
 
-        $update = Telegram::commandsHandler(true);
-        $message = $update->getMessage();
+        // $update = Telegram::commandsHandler(true);
+        // $message = $update->getMessage();
 
         if ($message->has('text')) {
-            $response = "Hello, " . $message->get('from')['first_name'] . "! You said: " . $message->get('text');
+            $response = "Hello, " . $request['message']['from']['first_name'] . "! You said: " . $request['message']['text']);
             Telegram::sendMessage([
-                'chat_id' => $message->get('chat')['id'],
+                'chat_id' =>$request['message']['text'],
                 'text' => $response,
             ]);
         }
