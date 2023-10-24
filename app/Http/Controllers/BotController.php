@@ -125,7 +125,7 @@ class BotController extends Controller
 
 
                 default:
-
+                Log::channel('telegram')->debug('info not selected',[]);
                     break;
             }
         }
