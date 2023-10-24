@@ -23,9 +23,7 @@ class BotController extends Controller
 
     public function telegram(Request $request)
     {
-        // $update = json_decode($request->getContent(), true);
-        // event( new NewMessage($update));
-        $this->bot = TelegraphBot::find(1);
+        
         $this->data = [
 
             'update' => $request['update_id'] ?? "",
@@ -55,18 +53,9 @@ class BotController extends Controller
             // 'message_type' => $request['entities'][0]['type'] ?? "",
             // 'query' => ''
         ]);
-        $firstname = $request['message']['from']['first_name'] ?? "";
-        $message_chat_id = $request['message']['chat']['id'] ?? "";
-        $message_id = $request['message']['message_id'] ?? "";
+        
 
-        $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-        $this->chat = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-        if ($chat2 == null) {
-            $chat = $this->bot->chats()->create([
-                'chat_id' => $message_chat_id,
-                'name' => $firstname,
-            ]);
-            $chat->html("<strong>Hello!</strong>\n\nI'm here!")->send();
+        
         } else {
 
             // comand checker
@@ -74,55 +63,14 @@ class BotController extends Controller
             switch ($request['message']['text']) {
                 case '/menu':
                     # code.
-                    $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-                    // $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
-                    $chat2->html("<strong>Hello $firstname !</strong> \n\n Please Select the Option Available")->keyboard(Keyboard::make()->buttons([
-                        Button::make("Classes")->action("all"),
-                        Button::make("📖 Students")->action("read")->param('id', '43'),
-                        // Button::make("👀 ")->url('https://test.it'),  
-                    ])->chunk(2))->send();
+                   
 
                     break;
                 case '/years':
 
 
-                    $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-                    // $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
-                   
-                    $classtype = ClassRoomType::all();
-                    // $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
-                    $buttons = [];
-
-                    foreach ($classtype as $item) {
-                        array_push($buttons,Button::make("$item->name")->action("$item->id"));
-                        
-                    }
-
-                Log::channel('telegram')->debug('info not selected',['test'=>$buttons]);
-
-
-                    $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")
-                    ->keyboard(Keyboard::make()->buttons([
-                        $buttons  
-                    ])->chunk(2))
-                    ->send();
-
-                    
-
-                    // // Create the keyboard with the buttons array
-                    // $keyboard = Keyboard::make()->buttons([$buttons])->chunk(2);
-
-                    // $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")
-                    //     ->keyboard($keyboard)
-                    //     ->send();
-
-
-
 
                     break;
-
-
-
                 default:
                 Log::channel('telegram')->debug('info not selected',[]);
                     break;
