@@ -99,9 +99,9 @@ class BotController extends Controller
                     }
 
                     $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")
-                    // ->keyboard(Keyboard::make()->buttons([
-                    //     $buttons  
-                    // ])->chunk(2))
+                    ->keyboard(Keyboard::make()->buttons([
+                        $buttons  
+                    ])->chunk(2))
                     ->send();
 
                     
