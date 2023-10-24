@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
+use App\Models\ClassRoomType;
 use DefStudio\Telegraph\Keyboard\Button;
 use DefStudio\Telegraph\Keyboard\Keyboard;
 use DefStudio\Telegraph\Models\TelegraphBot;
@@ -40,7 +41,7 @@ class BotController extends Controller
             'query' => ''
         ];
         Log::channel('telegram')->debug('Data feed', [
-            'all'=>$request->all(),
+            'all' => $request->all(),
             // 'chat_test' => ,
             // 'update' => $request['update_id'] ?? "",
             // 'message_id' => $request['message']['message_id'] ?? "",
@@ -77,12 +78,35 @@ class BotController extends Controller
                     // $chat2->html("<strong>Hello $firstname !</strong> \n\n how can i help you ?")->reply($message_id)->send();
                     $chat2->html("<strong>Hello $firstname !</strong> \n\n Please Select the Option Available")->keyboard(Keyboard::make()->buttons([
                         Button::make("Classes")->action("all"),
-                        Button::make("📖 Students")->action("read")->param('id','43'),
+                        Button::make("📖 Students")->action("read")->param('id', '43'),
                         // Button::make("👀 ")->url('https://test.it'),  
                     ])->chunk(2))->send();
 
                     break;
-                    // case''
+                case '/years':
+
+                    $classtype = ClassRoomType::all();
+                    $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
+                    $buttons = [];
+
+                    foreach ($classtype as $item) {
+                        $buttons[] = Button::make("$item->name")->action("$item->id");
+                        // $buttons[] = Button::make("📖 Students")->action("read")->param('id', '43');
+                    }
+
+                    // Create the keyboard with the buttons array
+                    $keyboard = Keyboard::make()->buttons($buttons)->chunk(2);
+
+                    $chat2->html("<strong>Hello $firstname!</strong>\n\nPlease select the option available")
+                        ->keyboard($keyboard)
+                        ->send();
+
+
+
+
+                    break;
+
+
 
                 default:
 
@@ -90,7 +114,7 @@ class BotController extends Controller
             }
         }
 
-        
+
         return response('OK', 200);
     }
 
