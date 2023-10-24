@@ -32,9 +32,9 @@ return [
     */
     'bots' => [
         'mybot' => [
-            'token' => env('TELEGRAM_BOT_TOKEN', 'YOUR-BOT-TOKEN'),
+            'token' => env('TG', '5926949306:AAEBNG97LFKwWfsKlOJIiJN0GS6cvZvKCJs'),
             'certificate_path' => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
-            'webhook_url' => env('TELEGRAM_WEBHOOK_URL', 'YOUR-BOT-WEBHOOK-URL'),
+            'webhook_url' => env('TELEGRAM_WEBHOOK_URL', 'https://micromek.net/bot/telegram'),
             'commands' => [
                 //Acme\Project\Commands\MyTelegramBot\BotCommand::class
             ],

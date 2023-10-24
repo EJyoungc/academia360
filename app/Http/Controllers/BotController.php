@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 // use DefStudio\Telegraph\Telegraph;
 use Illuminate\Support\Facades\Log;
 
+use Telegram\Bot\Laravel\Facades\Telegram;
+
 class BotController extends Controller
 {
     //
@@ -24,35 +26,50 @@ class BotController extends Controller
     public function telegram(Request $request)
     {
         
-        $this->data = [
 
-            'update' => $request['update_id'] ?? "",
-            'message_id' => $request['message']['message_id'] ?? "",
-            'message_from_id' => $request['message']['from']['id'] ?? "",
-            'bot' => $request['message']['from']['is_bot'] ?? "",
-            'message_firstname' => $request['message']['from']['first_name'] ?? "",
-            'message_lastname' => $request['message']['from']['last_name'] ?? "",
-            'message_type' => $request['message']['from']['type'] ?? "",
-            'message_chat_id' => $request['message']['chat']['id'] ?? "",
-            'message_body' => $request['message']['text'] ?? "",
-            'message_type' => $request['entities'][0]['type'] ?? "",
-            'query' => ''
-        ];
-        Log::channel('telegram')->debug('Data feed', [
-            'all' => $request->all(),
-            // 'chat_test' => ,
-            // 'update' => $request['update_id'] ?? "",
-            // 'message_id' => $request['message']['message_id'] ?? "",
-            // 'message_from_id' => $request['message']['from']['id'] ?? "",
-            // 'bot' => $request['message']['from']['is_bot'] ?? "",
-            // 'message_firstname' => $request['message']['from']['first_name'] ?? "",
-            // 'message_lastname' => $request['message']['from']['last_name'] ?? "",
-            // 'message_type' => $request['message']['from']['type'] ?? "",
-            // 'message_chat_id' => $request['message']['chat']['id'] ?? "",
-            // 'message_body' => $request['message']['text'] ?? "",
-            // 'message_type' => $request['entities'][0]['type'] ?? "",
-            // 'query' => ''
-        ]);
+
+        $update = Telegram::commandsHandler(true);
+        $message = $update->getMessage();
+
+        if ($message->has('text')) {
+            $response = "Hello, " . $message->get('from')['first_name'] . "! You said: " . $message->get('text');
+            Telegram::sendMessage([
+                'chat_id' => $message->get('chat')['id'],
+                'text' => $response,
+            ]);
+        }
+
+
+
+        // $this->data = [
+
+        //     'update' => $request['update_id'] ?? "",
+        //     'message_id' => $request['message']['message_id'] ?? "",
+        //     'message_from_id' => $request['message']['from']['id'] ?? "",
+        //     'bot' => $request['message']['from']['is_bot'] ?? "",
+        //     'message_firstname' => $request['message']['from']['first_name'] ?? "",
+        //     'message_lastname' => $request['message']['from']['last_name'] ?? "",
+        //     'message_type' => $request['message']['from']['type'] ?? "",
+        //     'message_chat_id' => $request['message']['chat']['id'] ?? "",
+        //     'message_body' => $request['message']['text'] ?? "",
+        //     'message_type' => $request['entities'][0]['type'] ?? "",
+        //     'query' => ''
+        // ];
+        // Log::channel('telegram')->debug('Data feed', [
+        //     'all' => $request->all(),
+        //     // 'chat_test' => ,
+        //     // 'update' => $request['update_id'] ?? "",
+        //     // 'message_id' => $request['message']['message_id'] ?? "",
+        //     // 'message_from_id' => $request['message']['from']['id'] ?? "",
+        //     // 'bot' => $request['message']['from']['is_bot'] ?? "",
+        //     // 'message_firstname' => $request['message']['from']['first_name'] ?? "",
+        //     // 'message_lastname' => $request['message']['from']['last_name'] ?? "",
+        //     // 'message_type' => $request['message']['from']['type'] ?? "",
+        //     // 'message_chat_id' => $request['message']['chat']['id'] ?? "",
+        //     // 'message_body' => $request['message']['text'] ?? "",
+        //     // 'message_type' => $request['entities'][0]['type'] ?? "",
+        //     // 'query' => ''
+        // ]);
         
 
         
