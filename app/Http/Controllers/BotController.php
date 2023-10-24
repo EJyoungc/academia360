@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 use Telegram\Bot\Laravel\Facades\Telegram;
+use Telegram\Bot\Api;
 
 class BotController extends Controller
 {
@@ -21,21 +22,34 @@ class BotController extends Controller
     public $bot;
     public $chat;
     public $data;
+    protected $telegram;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param  Api  $telegram
+     */
+    public function __construct(Api $telegram)
+    {
+        $this->telegram = $telegram;
+    }
 
 
     public function telegram(Request $request)
     {
-        
 
 
+        $response = $telegram->sendMessage([
+            'chat_id' => 'CHAT_ID',
+            'text' => 'Hello World'
+        ]);
         // $update = Telegram::commandsHandler(true);
         // $message = $update->getMessage();
 
         if ($message->has('text')) {
-            $response = "Hello, " . $request['message']['from']['first_name'] . "! You said: " . $request['message']['text']);
-            Telegram::sendMessage([
-                'chat_id' =>$request['message']['text'],
-                'text' => $response,
+            $response = $telegram->sendMessage([
+                'chat_id' => 'CHAT_ID',
+                'text' => 'Hello World'
             ]);
         }
 
