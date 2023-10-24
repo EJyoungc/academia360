@@ -49,16 +49,16 @@ class BotController extends Controller
             'text' => 'Hello World'
         ]);
 
-        Log::channel('telegram')->debug('info not selected',[$response]);
-        // $update = Telegram::commandsHandler(true);
-        // $message = $update->getMessage();
+        // Log::channel('telegram')->debug('info not selected',[$response]);
+        // // $update = Telegram::commandsHandler(true);
+        // // $message = $update->getMessage();
 
-        if ($message->has('text')) {
-            $response = $telegram->sendMessage([
-                'chat_id' => 'CHAT_ID',
-                'text' => 'Hello World'
-            ]);
-        }
+        // if ($message->has('text')) {
+        //     $response = $telegram->sendMessage([
+        //         'chat_id' => 'CHAT_ID',
+        //         'text' => 'Hello World'
+        //     ]);
+        // }
 
 
 
