@@ -91,8 +91,12 @@ class BotController extends Controller
 
                     foreach ($classtype as $item) {
                         $buttons[] = Button::make("$item->name")->action("$item->id");
-                        // $buttons[] = Button::make("📖 Students")->action("read")->param('id', '43');
+                        
                     }
+
+                    $chat2->html("<strong>List of all Class Year</strong>\n\nPlease select the option available")->keyboard(Keyboard::make()->buttons([
+                        $buttons  
+                    ])->chunk(2))->send();
 
                     
 
