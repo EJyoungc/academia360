@@ -37,25 +37,27 @@ class BotController extends Controller
 
     public function telegram(Request $request)
     {
-       
-       
+
+
         Log::channel('telegram')->debug('Data feed', [
             'all' => $request->all(),
             // 'test' => Telegram::getWebhookUpdate(),
             // 'test'=>$response, 
         ]);
 
-        $response = Telegram::sendMessage([
-            'chat_id' => $request['message']['chat']['id'],
-            'text' => 'Hello World'
-        ]);
+        if (isset($request['message']['chat']['id'])) {
+            $response = Telegram::sendMessage([
+                'chat_id' => $request['message']['chat']['id'],
+                'text' => 'Hello World'
+            ]);
+        }
 
 
         // Log::channel('telegram')->debug('info not selected',[$response]);
         // // $update = Telegram::commandsHandler(true);
         // // $message = $update->getMessage();
 
-        
+
 
 
 
@@ -73,13 +75,8 @@ class BotController extends Controller
         //     'message_type' => $request['entities'][0]['type'] ?? "",
         //     'query' => ''
         // ];
-       
-        
+
+
         return response('OK', 200);
     }
-
-
 }
-
-
-
