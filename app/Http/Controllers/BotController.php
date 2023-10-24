@@ -94,7 +94,21 @@ class BotController extends Controller
                         // $buttons[] = Button::make("📖 Students")->action("read")->param('id', '43');
                     }
 
-                    
+                    Log::channel('telegram')->debug('btn feed', [
+                        'buttons' => $buttons,
+                        // 'chat_test' => ,
+                        // 'update' => $request['update_id'] ?? "",
+                        // 'message_id' => $request['message']['message_id'] ?? "",
+                        // 'message_from_id' => $request['message']['from']['id'] ?? "",
+                        // 'bot' => $request['message']['from']['is_bot'] ?? "",
+                        // 'message_firstname' => $request['message']['from']['first_name'] ?? "",
+                        // 'message_lastname' => $request['message']['from']['last_name'] ?? "",
+                        // 'message_type' => $request['message']['from']['type'] ?? "",
+                        // 'message_chat_id' => $request['message']['chat']['id'] ?? "",
+                        // 'message_body' => $request['message']['text'] ?? "",
+                        // 'message_type' => $request['entities'][0]['type'] ?? "",
+                        // 'query' => ''
+                    ]);
 
                     // Create the keyboard with the buttons array
                     $keyboard = Keyboard::make()->buttons($buttons)->chunk(2);
