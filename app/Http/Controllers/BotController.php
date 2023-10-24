@@ -41,6 +41,7 @@ class BotController extends Controller
         //     'chat_id' => 'CHAT_ID',
         //     'text' => 'Hello World'
         // ]);
+       
         Log::channel('telegram')->debug('Data feed', [
             'all' => $request->all(),
             // 'test' => Telegram::getWebhookUpdate(),
@@ -51,7 +52,7 @@ class BotController extends Controller
             'chat_id' => $request['message']['chat']['id'],
             'text' => 'Hello World'
         ]);
-        
+
 
         // Log::channel('telegram')->debug('info not selected',[$response]);
         // // $update = Telegram::commandsHandler(true);
