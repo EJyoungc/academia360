@@ -43,7 +43,7 @@ class BotController extends Controller
             // 'test' => Telegram::getWebhookUpdate(), 
         ]);
 
-        $response = $telegram->sendMessage([
+        $response = Telegram::sendMessage([
             'chat_id' => 'CHAT_ID',
             'text' => 'Hello World'
         ]);
