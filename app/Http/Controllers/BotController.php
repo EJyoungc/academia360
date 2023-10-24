@@ -55,12 +55,7 @@ class BotController extends Controller
         // // $update = Telegram::commandsHandler(true);
         // // $message = $update->getMessage();
 
-        // if ($message->has('text')) {
-        //     $response = $telegram->sendMessage([
-        //         'chat_id' => 'CHAT_ID',
-        //         'text' => 'Hello World'
-        //     ]);
-        // }
+        
 
 
 
