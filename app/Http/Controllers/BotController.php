@@ -62,7 +62,7 @@ class BotController extends Controller
         $chat2 = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
         $this->chat = TelegraphChat::where("chat_id", $request['message']['chat']['id'] ?? "")->first();
         if ($chat2 == null) {
-            $chat = $bot->chats()->create([
+            $chat = $this->bot->chats()->create([
                 'chat_id' => $message_chat_id,
                 'name' => $firstname,
             ]);
