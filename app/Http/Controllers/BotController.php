@@ -54,8 +54,8 @@ class BotController extends Controller
             $full_name = $request['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'];
             $callbackData = $data['callback_query']['data']??"";
             // $this->select_option($request);
-            $this->selectoption($chat_id,$full_name,);
-            $this->menu($message, $chat_id, $full_name,$callbackData);
+            $this->selectoption($chat_id,$full_name,$callbackData);
+            $this->menu($message, $chat_id, $full_name,);
         }
 
 
