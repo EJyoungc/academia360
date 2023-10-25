@@ -143,6 +143,12 @@ class BotController extends Controller
                     $classrooms = Classroom::where('classroom_id', $id)->orderBy('name', 'asc')->get();
                     $buttons = [];
 
+                    Log::channel('telegram')->debug('switch', [
+                        'classroomtype' => $classroomtype,
+                        "classroom" => $classrooms,
+                        // 'chat_id'=>$chat_id, 
+                    ]);
+
                     foreach ($classrooms as  $class) {
                         array_push($buttons, ['text' => " 🎓 $class->name", "callback_data" => "students  $class->id"]);
                     }
