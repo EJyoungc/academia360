@@ -92,7 +92,8 @@ class BotController extends Controller
 
                 // 'test'=>$response, 
             ]);
-            $this->menu($request['message']['text']??'/years', $request['message']['chat']['id']??'650189872', $request['message']['chat']['first_name']??'EJ');
+            // $this->menu($request['message']['text']??'/years', $request['message']['chat']['id']??'650189872', $request['message']['chat']['first_name']??'EJ');
+            $this->menu($request['message']['text'], $request['message']['chat']['id'], $request['message']['chat']['first_name']);
         }
 
 
