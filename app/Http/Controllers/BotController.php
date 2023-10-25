@@ -37,8 +37,8 @@ class BotController extends Controller
 
     public function telegram(Request $request)
     {
-
-
+        
+        
         Log::channel('telegram')->debug('Data feed', [
             'all' => $request->all(),
             // 'test' => Telegram::getWebhookUpdate(),
@@ -68,6 +68,7 @@ class BotController extends Controller
                     ];
                     $response = Telegram::sendMessage([
                         'chat_id' => $chat_id,
+                        'photo' => public_path("bot/bot.jpg"),
                         'text' => "Hello  *$full_name* \n\n  *Select Academic Class :*  ",
                         'parse_mode' => 'Markdown',
                         'reply_markup' => json_encode($keyboard),
