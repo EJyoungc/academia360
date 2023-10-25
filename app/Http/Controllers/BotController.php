@@ -126,7 +126,7 @@ class BotController extends Controller
         // $message = $data['message']['text'];
         // $chat_id = $data['message']['chat']['id'];
         // $full_name = $data['message']['from']['first_name'] . ' ' . $data['message']['from']['last_name'];
-        if (isset($callbackData)) {
+        // if (isset($callbackData)) {
 
             list($model, $id) = explode(' ', $callbackData);
 
@@ -164,7 +164,7 @@ class BotController extends Controller
                 default:
                     $text = 'Invalid selection.';
                     break;
-            }
+            // }
         }
     }
 
