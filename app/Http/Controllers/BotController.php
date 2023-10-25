@@ -269,7 +269,6 @@ class BotController extends Controller
                 $buttonsInRow = 2;
                 $keyboard = [
 
-
                     'inline_keyboard' => array_chunk($buttons, $buttonsInRow),
                 ];
                 $response = Telegram::sendMessage([
