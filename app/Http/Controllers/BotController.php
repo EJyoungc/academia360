@@ -89,11 +89,13 @@ class BotController extends Controller
 
     public function selectoption($data)
     {
-
+        $message = $data['message']['text'];
+        $chat_id = $data['message']['chat']['id'];
+        $full_name = $data['message']['from']['first_name'] . ' ' . $data['message']['from']['last_name'];
         if (isset($data['callback_query'])) {
             $callbackData = $data['callback_query']['data'];
 
-            
+
             list($model, $id) = explode(' ', $callbackData);
 
             $chatId = $data['callback_query']['message']['chat']['id'];
@@ -102,7 +104,7 @@ class BotController extends Controller
             switch ($model) {
                 case 'classrooms':
                     $classroomtype = ClassRoomType::find($id);
-                    $classrooms = Classroom::where('classroom_id',$id)->orderBy('name', 'asc')->get();
+                    $classrooms = Classroom::where('classroom_id', $id)->orderBy('name', 'asc')->get();
                     $buttons = [];
 
                     foreach ($classrooms as  $class) {
