@@ -66,7 +66,7 @@ class BotController extends Controller
             // $this->menu($message, $chat_id, $full_name);
         }
 
-        if ($request['callback_query']['data']) {
+        if (isset($request['callback_query']['data'])) {
 
             Log::channel('telegram')->debug('is reply', [
                 // 'data' =>$request['callback_query']['data']??'',
