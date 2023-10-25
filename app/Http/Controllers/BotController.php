@@ -68,7 +68,8 @@ class BotController extends Controller
                     ];
                     $response = Telegram::sendMessage([
                         'chat_id' => $chat_id,
-                        'text' => "Hello <strong> $full_name</strong> <br><br> <strong> All Academic Class :</strong>  ",
+                        'text' => "Hello  **$full_name** \n\n  **All Academic Class :**  ",
+                        'parse_mode' => 'Markdown',
                         'reply_markup' => json_encode($keyboard),
                     ]);
                     break;
