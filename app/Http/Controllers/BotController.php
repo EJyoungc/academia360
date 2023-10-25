@@ -80,12 +80,12 @@ class BotController extends Controller
         }
 
 
-        // if (isset($request['message']['chat']['id']??'650189872')) {
+        if (isset($request['message']['chat']['id'])) {
             Log::channel('telegram')->debug('is working', [
-                'text' =>$request['message']['text']??'/years',
+                // 'text' =>$request['message']['text']??'/years',
 
-                'data' =>$request['message']['chat']['id']??'',
-                'name' =>$request['message']['chat']['first_name']??'',
+                // 'data' =>$request['message']['chat']['id']??'',
+                // 'name' =>$request['message']['chat']['first_name']??'',
                 //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
                 // 'all' => $request->all(),
                 //  'test' => $request['chat_instance'],
@@ -93,7 +93,7 @@ class BotController extends Controller
                 // 'test'=>$response, 
             ]);
             $this->menu($request['message']['text']??'/years', $request['message']['chat']['id']??'650189872', $request['message']['chat']['first_name']??'EJ');
-        // }
+        }
 
 
 
