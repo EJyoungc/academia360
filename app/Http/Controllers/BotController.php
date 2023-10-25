@@ -44,7 +44,7 @@ class BotController extends Controller
         Log::channel('telegram')->debug('Data feed', [
             'all' => $request->all(),
              'test' => $request['chat_instance'],
-             'data' =>$request['callback_query']['data'],
+             'data' =>$request['callback_query']['data']??'',
             // 'test'=>$response, 
         ]);
 
@@ -53,7 +53,7 @@ class BotController extends Controller
             $message = $request['message']['text'];
             $chat_id = $request['message']['chat']['id'];
             $full_name = $request['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'];
-            $callbackData = $request['callback_query']['data']??"";
+            $callbackData = $request['callback_query']['data'] ?? "";
             // $this->select_option($request);
             $this->menu($message, $chat_id, $full_name);
             $this->selectoption($chat_id,$full_name,$callbackData);
