@@ -52,11 +52,18 @@ class BotController extends Controller
             switch ($message) {
                 case '/years':
                     # code...
+                    $classes = ClassRoomType::all();
+                    $buttons= [];
+
+                    foreach($classes as  $class){
+                        array_push($buttons,[['text'=>"$class->name", "callback_data"=>"$class->id"]]);
+                    }
 
                     $keyboard = [
-                        'inline_keyboard' => [
-                            [['text' => 'Click me', 'callback_data' => 'button_clicked']],
-                        ],
+                        // 'inline_keyboard' => [
+                        //     [['text' => 'Click me', 'callback_data' => 'button_clicked']],
+                        // ],
+                        'inline_keyboard' => $buttons,
                     ];
                     $response = Telegram::sendMessage([
                         'chat_id' => $chat_id,
