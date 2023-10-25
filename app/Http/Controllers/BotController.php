@@ -131,7 +131,11 @@ class BotController extends Controller
             list($model, $id) = explode(' ', $callbackData);
 
             // $chatId = $data['callback_query']['message']['chat']['id'];
-
+            Log::channel('telegram')->debug('explode', [
+                'model' => $model,
+                "id" => $id,
+                // 'chat_id'=>$chat_id, 
+            ]);
             // Handle different options based on the custom data
             switch ($model) {
                 case 'classrooms':
