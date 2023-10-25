@@ -50,36 +50,7 @@ class BotController extends Controller
             $message = $request['message']['text'];
             $chat_id = $request['message']['chat']['id'];
             $full_name = $request['message']['from']['first_name'] .' '. $request['message']['from']['last_name'];
-            switch ($message) {
-                case '/years':
-                    # code...
-                    $classes = ClassRoomType::orderBy('name','asc')->get();
-                    $buttons= [];
-
-                    foreach($classes as  $class){
-                        array_push($buttons,['text'=>" 🎓 $class->name", "callback_data"=>"$class->id"]);
-                    }
-                    $buttonsInRow = 2;
-                    $keyboard = [
-                        // 'inline_keyboard' => [
-                        //     [['text' => 'Click me', 'callback_data' => 'button_clicked']],
-                        // ],
-                        'inline_keyboard' => array_chunk($buttons,$buttonsInRow),
-                    ];
-                    $response = Telegram::sendMessage([
-                        'chat_id' => $chat_id,
-                        // 'photo' => public_path("bot/bot.jpg"),
-                        // 'caption' => "Hello  *$full_name* ",
-                        'text' => " Hey 😊 👋' *$full_name* *Here are the Academic  Classes you wanted*👇  ",
-                        'parse_mode' => 'Markdown',
-                        'reply_markup' => json_encode($keyboard),
-                    ]);
-                    break;
-                
-                default:
-                    # code...
-                    break;
-            }
+            $this->menu($message,$chat_id,$full_name);
 
 
 
@@ -113,4 +84,42 @@ class BotController extends Controller
 
         return response('OK', 200);
     }
+
+
+    public function menu($message,$chat_id,$full_name){
+
+        switch ($message) {
+            case '/years':
+                # code...
+                $classes = ClassRoomType::orderBy('name','asc')->get();
+                $buttons= [];
+
+                foreach($classes as  $class){
+                    array_push($buttons,['text'=>" 🎓 $class->name", "callback_data"=>"$class->id"]);
+                }
+                $buttonsInRow = 2;
+                $keyboard = [
+                    
+                    'inline_keyboard' => array_chunk($buttons,$buttonsInRow),
+                ];
+                $response = Telegram::sendMessage([
+                    'chat_id' => $chat_id,
+                    // 'photo' => public_path("bot/bot.jpg"),
+                    // 'caption' => "Hello  *$full_name* ",
+                    'text' => " Hey 😊 👋' *$full_name* *Here are the Academic  Classes you wanted*👇  ",
+                    'parse_mode' => 'Markdown',
+                    'reply_markup' => json_encode($keyboard),
+                ]);
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+
+    }
+
+
+
 }
