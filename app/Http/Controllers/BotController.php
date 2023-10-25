@@ -42,12 +42,12 @@ class BotController extends Controller
 
 
     
-        $message = $request['message']['text'] ?? '';
-        $chat_id = $request['message']['chat']['id'] ?? '';
-        $full_name = $request['message']['from']['first_name'] ?? '' . ' ' . $request['message']['from']['last_name'] ?? '';
-        $callbackData = $request['callback_query']['data'] ?? '';
+        // $message = $request['message']['text'] ?? '';
+        // $chat_id = $request['message']['chat']['id'] ?? '';
+        // $full_name = $request['message']['from']['first_name'] ?? '' . ' ' . $request['message']['from']['last_name'] ?? '';
+        // $callbackData = $request['callback_query']['data'] ?? '';
 
-        
+
         Log::channel('telegram')->debug('Data feed', [
             'data' => $request['callback_query']['data'] ?? '',
             'chat_id' => $request['callback_query']['message']['chat']['id'] ?? '',
@@ -70,7 +70,7 @@ class BotController extends Controller
             //     $request['callback_query']['data']);
         }
 
-        if (isset($chat_id)) {
+        if (isset($request['callback_query']['message']['chat']['id'])) {
             Log::channel('telegram')->debug('is working', [
                 // 'data' =>$request['callback_query']['data']??'',
                 //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
