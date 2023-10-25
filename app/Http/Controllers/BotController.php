@@ -141,7 +141,7 @@ class BotController extends Controller
                 case "classrooms":
                     Log::channel('telegram')->debug('switch', [
                         // 'classroomtype' => $classroomtype,
-                        "classroom" => Classroom::where('classroom_id', $id)->orderBy('name', 'asc')->get(),
+                        "classroom" => Classroom::where('classroom_id', (int)$id)->orderBy('name', 'asc')->get(),
                         // 'chat_id'=>$chat_id, 
                     ]);
                     $classroomtype = ClassRoomType::find($id);
