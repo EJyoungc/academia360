@@ -49,6 +49,7 @@ class BotController extends Controller
             
             $message = $request['message']['text'];
             $chat_id = $request['message']['chat']['id'];
+            $full_name = $request['message']['from']['first_name'] .' '. $request['message']['from']['last_name'];
             switch ($message) {
                 case '/years':
                     # code...
@@ -67,7 +68,7 @@ class BotController extends Controller
                     ];
                     $response = Telegram::sendMessage([
                         'chat_id' => $chat_id,
-                        'text' => 'Hello World',
+                        'text' => "Hello <strong> $full_name</strong> <br><br> <strong> All Academic Class :</strong>  ",
                         'reply_markup' => json_encode($keyboard),
                     ]);
                     break;
