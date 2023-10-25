@@ -53,7 +53,7 @@ class BotController extends Controller
             $chat_id = $request['message']['chat']['id'];
             $full_name = $request['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'];
             // $this->select_option($request);
-            $this->selectoption($request);
+            $this->selectoption($request->all());
             $this->menu($message, $chat_id, $full_name);
         }
 
