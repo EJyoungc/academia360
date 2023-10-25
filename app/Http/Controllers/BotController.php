@@ -89,7 +89,7 @@ class BotController extends Controller
 
                 // 'test'=>$response, 
             ]);
-            // $this->menu($message, $chat_id, $full_name);
+            $this->menu($message, $chat_id, $full_name);
         }
 
 
