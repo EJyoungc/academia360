@@ -42,7 +42,7 @@ class BotController extends Controller
     {
 
 
-    
+
         // $message = $request['message']['text'] ?? '';
         // $chat_id = $request['message']['chat']['id'] ?? '';
         // $full_name = $request['message']['from']['first_name'] ?? '' . ' ' . $request['message']['from']['last_name'] ?? '';
@@ -63,20 +63,21 @@ class BotController extends Controller
         ]);
 
 
-        
+
 
         if (isset($request['callback_query']['data'])) {
 
             Log::channel('telegram')->debug('is reply', [
-            //     'data' =>$request['callback_query']['data']??'',
-            //      'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
-            //     'all' => $request->all(),
+                //     'data' =>$request['callback_query']['data']??'',
+                //      'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
+                //     'all' => $request->all(),
 
             ]);
             $this->selectoption(
                 $request['callback_query']['message']['chat']['id'],
-                $request['callback_query']['message']['chat']['first_name'] ,
-                $request['callback_query']['data']);
+                $request['callback_query']['message']['chat']['first_name'],
+                $request['callback_query']['data']
+            );
         }
 
 
@@ -90,7 +91,7 @@ class BotController extends Controller
 
                 // 'test'=>$response, 
             ]);
-            $this->menu($request['message']['text'], $request['message']['chat']['id'],$request['message']['chat']['first_name']);
+            $this->menu($request['message']['text'], $request['message']['chat']['id'], $request['message']['chat']['first_name']);
         }
 
 
@@ -130,100 +131,110 @@ class BotController extends Controller
         Log::channel('telegram')->debug('selected option', [
             'testit' => $callbackData,
             "name" => $full_name,
-            'chat_id'=>$chat_id, 
+            'chat_id' => $chat_id,
         ]);
         // $message = $data['message']['text'];
         // $chat_id = $data['message']['chat']['id'];
         // $full_name = $data['message']['from']['first_name'] . ' ' . $data['message']['from']['last_name'];
         // if (isset($callbackData)) {
 
-            list($model, $id) = explode(' ', $callbackData);
+        list($model, $id) = explode(' ', $callbackData);
 
-            // $chatId = $data['callback_query']['message']['chat']['id'];
-            Log::channel('telegram')->debug('explode', [
-                'model' => $model,
-                "id" => $id,
-                // 'chat_id'=>$chat_id, 
-            ]);
-            // Handle different options based on the custom data
-            switch ($model) {
-                case "classrooms":
-                    Log::channel('telegram')->debug('classroom', [
-                        // 'classroomtype' => $classroomtype,
-                        // "classroom" => Classroom::where('classroom_id',$id)->get()??'',
-                        // 'chat_id'=>$chat_id, 
-                    ]);
-                    $classroomtype = ClassRoomType::find($id);
-                    $classrooms = Classroom::where('classroom_type_id', $id)->orderBy('name', 'asc')->get();
-                    $buttons = [];
+        // $chatId = $data['callback_query']['message']['chat']['id'];
+        Log::channel('telegram')->debug('explode', [
+            'model' => $model,
+            "id" => $id,
+            // 'chat_id'=>$chat_id, 
+        ]);
+        // Handle different options based on the custom data
+        switch ($model) {
+            case "classrooms":
+                Log::channel('telegram')->debug('classroom', [
+                    // 'classroomtype' => $classroomtype,
+                    // "classroom" => Classroom::where('classroom_id',$id)->get()??'',
+                    // 'chat_id'=>$chat_id, 
+                ]);
+                $classroomtype = ClassRoomType::find($id);
+                $classrooms = Classroom::where('classroom_type_id', $id)->orderBy('name', 'asc')->get();
+                $buttons = [];
 
-                    Log::channel('telegram')->debug('switch classrooms', [
-                        // 'classroomtype' => $classroomtype,
-                        // "classroom" => $classrooms,
-                        // 'chat_id'=>$chat_id, 
-                    ]);
+                Log::channel('telegram')->debug('switch classrooms', [
+                    // 'classroomtype' => $classroomtype,
+                    // "classroom" => $classrooms,
+                    // 'chat_id'=>$chat_id, 
+                ]);
 
-                    foreach ($classrooms as  $class) {
-                        array_push($buttons, ['text' => " 🎓 $class->name", "callback_data" => "students  $class->id"]);
+                foreach ($classrooms as  $class) {
+                    array_push($buttons, ['text' => " 🎓 $class->name", "callback_data" => "students  $class->id"]);
+                }
+                $buttonsInRow = 2;
+                $keyboard = [
+
+                    'inline_keyboard' => array_chunk($buttons, $buttonsInRow),
+                ];
+                $response = Telegram::sendMessage([
+                    'chat_id' => $chat_id,
+                    'text' => " Hey 😊 👋' *$full_name* *Here are the Class Rooms in $classroomtype->name  you wanted*👇  ",
+                    'parse_mode' => 'Markdown',
+                    'reply_markup' => json_encode($keyboard),
+                ]);
+
+                break;
+            case 'students':
+
+
+                Log::channel('telegram')->debug('students', [
+                    // 'classroomtype' => $classroomtype,
+                    // "classroom" => Classroom::where('classroom_id',$id)->get()??'',
+                    // 'chat_id'=>$chat_id, 
+                ]);
+                $classroom = Classroom::find($id);
+                $classStudents = AcademicYearStudentLog::where('classroom_id', $id)->where('status', 'current')->get();
+                $buttons = [];
+
+                Log::channel('telegram')->debug('switch student', [
+                    // 'classroomtype' => $classroomtype,
+                    // "classroom" => $classrooms,
+                    // 'chat_id'=>$chat_id, 
+                ]);
+                if ($classStudents->count() > 0) {
+                    foreach ($classStudents as  $student) {
+                        array_push($buttons, ['text' => " 🎓 $student->student->name", "callback_data" => "students  $student->student_id"]);
                     }
                     $buttonsInRow = 2;
                     $keyboard = [
 
                         'inline_keyboard' => array_chunk($buttons, $buttonsInRow),
                     ];
+
                     $response = Telegram::sendMessage([
                         'chat_id' => $chat_id,
-                        'text' => " Hey 😊 👋' *$full_name* *Here are the Class Rooms in $classroomtype->name  you wanted*👇  ",
+                        'text' => " Hey 😊 👋' *$full_name* *Here are the Class Rooms in $classroom->name  you wanted*👇  ",
                         'parse_mode' => 'Markdown',
                         'reply_markup' => json_encode($keyboard),
                     ]);
+                } else {
 
-                    break;
-                    case 'students':
-                        
-
-                        Log::channel('telegram')->debug('students', [
-                            // 'classroomtype' => $classroomtype,
-                            // "classroom" => Classroom::where('classroom_id',$id)->get()??'',
-                            // 'chat_id'=>$chat_id, 
-                        ]);
-                        $classroom = Classroom::find($id);
-                        $classStudents = AcademicYearStudentLog::where('classroom_id', $id)->where('status','current')->get();
-                        $buttons = [];
-    
-                        Log::channel('telegram')->debug('switch student', [
-                            // 'classroomtype' => $classroomtype,
-                            // "classroom" => $classrooms,
-                            // 'chat_id'=>$chat_id, 
-                        ]);
-    
-                        foreach ($classStudents as  $student) {
-                            array_push($buttons, ['text' => " 🎓 $student->student->name", "callback_data" => "students  $student->student_id"]);
-                        }
-                        $buttonsInRow = 2;
-                        $keyboard = [
-    
-                            'inline_keyboard' => array_chunk($buttons, $buttonsInRow),
-                        ];
-                        $response = Telegram::sendMessage([
-                            'chat_id' => $chat_id,
-                            'text' => " Hey 😊 👋' *$full_name* *Here are the Class Rooms in $classroom->name  you wanted*👇  ",
-                            'parse_mode' => 'Markdown',
-                            'reply_markup' => json_encode($keyboard),
-                        ]);
+                    $response = Telegram::sendMessage([
+                        'chat_id' => $chat_id,
+                        'text' => " *Empty* ",
+                        'parse_mode' => 'Markdown',
+                        // 'reply_markup' => json_encode($keyboard),
+                    ]);
+                }
 
 
 
 
 
-                        break;
-                    // case 'option_3_data':
-                    //     $text = 'You selected Option 3.';
-                    //     break;
-                default:
-                    $text = 'Invalid selection.';
-                    break;
-            // }
+                break;
+                // case 'option_3_data':
+                //     $text = 'You selected Option 3.';
+                //     break;
+            default:
+                $text = 'Invalid selection.';
+                break;
+                // }
         }
     }
 
