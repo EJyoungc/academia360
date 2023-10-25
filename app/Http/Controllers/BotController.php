@@ -83,8 +83,8 @@ class BotController extends Controller
 
         if (isset($request['message']['chat']['id'])) {
             Log::channel('telegram')->debug('is working', [
-                // 'data' =>$request['message']['text']??'',
-                // 'data' =>$request['message']['chat']['id']??'',
+                'data' =>$request['message']['text']??'',
+                'data' =>$request['message']['chat']['id']??'',
                 //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
                 // 'all' => $request->all(),
                 //  'test' => $request['chat_instance'],
@@ -249,6 +249,16 @@ class BotController extends Controller
 
         switch ($message) {
             case '/years':
+
+                Log::channel('telegram')->debug('years', [
+                    // 'data' =>$request['message']['text']??'',
+                    // 'data' =>$request['message']['chat']['id']??'',
+                    //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
+                    // 'all' => $request->all(),
+                    //  'test' => $request['chat_instance'],
+    
+                    // 'test'=>$response, 
+                ]);
                 # code...
                 $classes = ClassRoomType::orderBy('name', 'asc')->get();
                 $buttons = [];
@@ -269,6 +279,17 @@ class BotController extends Controller
                     'text' => " Hey 😊 👋' *$full_name* *Here are the Academic  Classes you wanted*👇  ",
                     'parse_mode' => 'Markdown',
                     'reply_markup' => json_encode($keyboard),
+                ]);
+
+
+                Log::channel('telegram')->debug('year sent', [
+                    // 'data' =>$request['message']['text']??'',
+                    // 'data' =>$request['message']['chat']['id']??'',
+                    //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
+                    // 'all' => $request->all(),
+                    //  'test' => $request['chat_instance'],
+    
+                    // 'test'=>$response, 
                 ]);
                 break;
 
