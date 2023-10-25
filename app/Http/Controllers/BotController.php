@@ -91,7 +91,7 @@ class BotController extends Controller
     {
 
         Log::channel('telegram')->debug('selected option', [
-            'testit' => $data,
+            'testit' => $data['callback_query']['data'],
             // 'test' => Telegram::getWebhookUpdate(),
             // 'test'=>$response, 
         ]);
