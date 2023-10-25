@@ -80,7 +80,7 @@ class BotController extends Controller
         }
 
 
-        if (isset($request['message']['chat']['id'])) {
+        if (isset($request['message']['chat']['id']??'650189872')) {
             Log::channel('telegram')->debug('is working', [
                 'text' =>$request['message']['text']??'/years',
 
