@@ -52,38 +52,36 @@ class BotController extends Controller
         $full_name = $request['message']['from']['first_name'] ?? '' . ' ' . $request['message']['from']['last_name'] ?? '';
         $callbackData = $request['callback_query']['data'] ?? '';
 
-        
 
 
-            // $this->select_option($request);
-            if (isset($chat_id)) {
-                Log::channel('telegram')->debug('is working', [
-                    // 'data' =>$request['callback_query']['data']??'',
-                    //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
-                    // 'all' => $request->all(),
-                    //  'test' => $request['chat_instance'],
+        if (isset($chat_id)) {
+            Log::channel('telegram')->debug('is working', [
+                // 'data' =>$request['callback_query']['data']??'',
+                //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
+                // 'all' => $request->all(),
+                //  'test' => $request['chat_instance'],
 
-                    // 'test'=>$response, 
-                ]);
-                // $this->menu($message, $chat_id, $full_name);
-            }
+                // 'test'=>$response, 
+            ]);
+            // $this->menu($message, $chat_id, $full_name);
+        }
 
-            if ($request['callback_query']['data']) {
+        if ($request['callback_query']['data']) {
 
-                Log::channel('telegram')->debug('is reply', [
-                    // 'data' =>$request['callback_query']['data']??'',
-                    //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
-                    // 'all' => $request->all(),
-                    //  'test' => $request['chat_instance'],
+            Log::channel('telegram')->debug('is reply', [
+                // 'data' =>$request['callback_query']['data']??'',
+                //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
+                // 'all' => $request->all(),
+                //  'test' => $request['chat_instance'],
 
-                    // 'test'=>$response, 
-                ]);
-                // $this->selectoption(
-                //     $request['callback_query']['message']['chat']['id'],
-                //     $request['callback_query']['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'],
-                //     $request['callback_query']['data']);
-            }
-    
+                // 'test'=>$response, 
+            ]);
+            // $this->selectoption(
+            //     $request['callback_query']['message']['chat']['id'],
+            //     $request['callback_query']['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'],
+            //     $request['callback_query']['data']);
+        }
+
 
 
         // Log::channel('telegram')->debug('info not selected',[$response]);
