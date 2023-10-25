@@ -52,9 +52,10 @@ class BotController extends Controller
             $message = $request['message']['text'];
             $chat_id = $request['message']['chat']['id'];
             $full_name = $request['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'];
+            $callbackData = $data['callback_query']['data']??"";
             // $this->select_option($request);
-            $this->selectoption($request->all());
-            $this->menu($message, $chat_id, $full_name);
+            $this->selectoption($chat_id,$full_name,);
+            $this->menu($message, $chat_id, $full_name,$callbackData);
         }
 
 
@@ -87,24 +88,22 @@ class BotController extends Controller
 
 
 
-    public function selectoption($data)
+    public function selectoption($chat_id,$full_name,$callbackData)
     {
 
         Log::channel('telegram')->debug('selected option', [
-            'testit' => $data['callback_query']['data'],
+            'testit' => $callbackData,
             // 'test' => Telegram::getWebhookUpdate(),
             // 'test'=>$response, 
         ]);
-        $message = $data['message']['text'];
-        $chat_id = $data['message']['chat']['id'];
-        $full_name = $data['message']['from']['first_name'] . ' ' . $data['message']['from']['last_name'];
-        if (isset($data['callback_query'])) {
-            $callbackData = $data['callback_query']['data'];
-
-
+        // $message = $data['message']['text'];
+        // $chat_id = $data['message']['chat']['id'];
+        // $full_name = $data['message']['from']['first_name'] . ' ' . $data['message']['from']['last_name'];
+        if (isset($callbackData)) {
+            
             list($model, $id) = explode(' ', $callbackData);
 
-            $chatId = $data['callback_query']['message']['chat']['id'];
+            // $chatId = $data['callback_query']['message']['chat']['id'];
 
             // Handle different options based on the custom data
             switch ($model) {
@@ -129,12 +128,12 @@ class BotController extends Controller
                     ]);
 
                     break;
-                case 'option_2_data':
-                    $text = 'You selected Option 2.';
-                    break;
-                case 'option_3_data':
-                    $text = 'You selected Option 3.';
-                    break;
+                // case 'option_2_data':
+                //     $text = 'You selected Option 2.';
+                //     break;
+                // case 'option_3_data':
+                //     $text = 'You selected Option 3.';
+                //     break;
                 default:
                     $text = 'Invalid selection.';
                     break;
