@@ -193,7 +193,7 @@ class BotController extends Controller
                 $buttons = [];
 
                 Log::channel('telegram')->debug('switch student', [
-                    'students' => $classStudents,
+                    'students' => $classStudents->count(),
                     // "classroom" => $classrooms,
                     // 'chat_id'=>$chat_id, 
                 ]);
