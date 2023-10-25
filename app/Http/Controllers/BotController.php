@@ -88,7 +88,7 @@ class BotController extends Controller
 
                 // 'test'=>$response, 
             ]);
-            $this->menu($message, $chat_id, $full_name);
+            $this->menu($request['message']['text'], $request['message']['chat']['id'],$request['callback_query']['message']['chat']['first_name']);
         }
 
 
