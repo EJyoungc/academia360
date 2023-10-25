@@ -199,7 +199,7 @@ class BotController extends Controller
                 ]);
                 if ($classStudents->count() > 0) {
                     foreach ($classStudents as  $student) {
-                        array_push($buttons, ['text' => " 🎓 $student->student->name", "callback_data" => "students  $student->student_id"]);
+                        array_push($buttons, ['text' => ' 🎓 '.$student->student->name , "callback_data" => "students  $student->student_id"]);
                     }
                     $buttonsInRow = 2;
                     $keyboard = [
