@@ -139,8 +139,8 @@ class BotController extends Controller
             // Handle different options based on the custom data
             switch ($model) {
                 case 'classrooms':
-                    $classroomtype = ClassRoomType::find($id);
-                    $classrooms = Classroom::where('classroom_id', $id)->orderBy('name', 'asc')->get();
+                    $classroomtype = ClassRoomType::find((int)$id);
+                    $classrooms = Classroom::where('classroom_id', (int)$id)->orderBy('name', 'asc')->get();
                     $buttons = [];
 
                     Log::channel('telegram')->debug('switch', [
