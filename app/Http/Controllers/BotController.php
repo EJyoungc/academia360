@@ -58,8 +58,9 @@ class BotController extends Controller
 
 
         Log::channel('telegram')->debug('Data feed', [
-            'data' => $request['callback_query']['data'] ?? '',
-            'chat_id' => $request['callback_query']['message']['chat']['id'] ?? '',
+            'all'=> $request['message']['text'],
+            // 'data' => $request['callback_query']['data'] ?? '',
+            // 'chat_id' => $request['callback_query']['message']['chat']['id'] ?? '',
         ]);
 
 
