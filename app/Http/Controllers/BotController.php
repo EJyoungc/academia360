@@ -53,7 +53,7 @@ class BotController extends Controller
             switch ($message) {
                 case '/years':
                     # code...
-                    $classes = ClassRoomType::orderBy('name','desc')->get();
+                    $classes = ClassRoomType::orderBy('name','asc')->get();
                     $buttons= [];
 
                     foreach($classes as  $class){
