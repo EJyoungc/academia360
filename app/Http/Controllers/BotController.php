@@ -56,7 +56,7 @@ class BotController extends Controller
                     $buttons= [];
 
                     foreach($classes as  $class){
-                        array_push($buttons,[['text'=>"$class->name", "callback_data"=>"$class->id"]]);
+                        array_push($buttons,['text'=>"$class->name", "callback_data"=>"$class->id"]);
                     }
                     $buttonsInRow = 2;
                     $keyboard = [
