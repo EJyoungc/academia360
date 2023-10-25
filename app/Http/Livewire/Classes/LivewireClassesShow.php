@@ -76,7 +76,7 @@ class LivewireClassesShow extends Component
 
     public function render()
     {
-
+        // $terms =  
         $students = AcademicYearStudentLog::where('status','current')->where('classroom_id',$this->classroom_id)->get();
         return view('livewire.classes.livewire-classes-show')->with('students',$students);
     }

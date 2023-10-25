@@ -69,41 +69,15 @@
                         <div class="dropdown-menu animated bounceInDown">
                             <div class="mega-dropdown-menu row">
                                 <div class="col-lg-3 col-xlg-2 m-b-30">
-                                    <h5 class="m-b-20">Carousel</h5>
-                                    <!-- CAROUSEL -->
-                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                        <div class="carousel-inner" role="listbox">
-                                            <div class="carousel-item active">
-                                                <div class="container p-0">
-                                                    <img class="d-block img-fluid"
-                                                        src="../../assets/images/big/img1.jpg" alt="First slide">
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <div class="container p-0">
-                                                    <img class="d-block img-fluid"
-                                                        src="../../assets/images/big/img2.jpg" alt="Second slide">
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <div class="container p-0">
-                                                    <img class="d-block img-fluid"
-                                                        src="../../assets/images/big/img3.jpg" alt="Third slide">
-                                                </div>
-                                            </div>
+                                    <h5 class="m-b-20">Quick Settings</h5>
+                                    <form action="">
+                                        <div class="form-group">
+                                            <label for="">Academic Years Sessions</label>
+                                            <select class="form-control">
+                                                <option value="">Select</option>
+                                            </select>
                                         </div>
-                                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-                                            data-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-                                            data-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </div>
-                                    <!-- End CAROUSEL -->
+                                    </form>
                                 </div>
                                 <div class="col-lg-3 m-b-30">
                                     <h5 class="m-b-20">Accordion</h5>
@@ -309,6 +283,7 @@
                                 <span class="bg-danger"></span>
                             </span>
                             <ul class="list-style-none">
+                                
                                 <li>
                                     <div class="drop-title bg-danger text-white">
                                         <h4 class="m-b-0 m-t-5">5 New</h4>
@@ -393,6 +368,10 @@
                     <!-- ============================================================== -->
                     <!-- Search -->
                     <!-- ============================================================== -->
+
+                    
+
+
                     <li class="nav-item search-box">
                         <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
                             <i class="ti-search font-16"></i>

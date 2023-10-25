@@ -109,17 +109,20 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-4 px-4">
+                            
                             <div class="row">
-                                <div class="col-lg-12 border-bottom-1">
-                                    <div class="text-center h4">Term 1</div>
-                                </div>
-                                <div class="col-lg-12 border-1 border-top">
-                                    <div class="text-center h4 ">80%</div>
-                                </div>
+                                <a href="">
+                                    <div class="col-lg-12 border-bottom-1">
+                                        <div class="text-center h4">Term 1</div>
+                                    </div>
+                                    <div class="col-lg-12 border-1 border-top">
+                                        <div class="text-center h4 ">80%</div>
+                                    </div>
+                                </a> 
                             </div>
                         </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-4 px-4">
                             <div class="row">
                                 <div class="col-lg-12 border-bottom-1">
                                     <div class="text-center h4">Term 2</div>
@@ -129,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-4  ">
+                        <div class="col-12 col-lg-4 px-4  ">
                             <div class="row">
                                 <div class="col-lg-12 border-bottom-1">
                                     <div class="text-center h4">Term 3</div>

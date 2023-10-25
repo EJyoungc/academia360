@@ -9,6 +9,7 @@ use App\Http\Livewire\Attendance\LivewireAttendance;
 use App\Http\Livewire\Books\LivewireBooks;
 use App\Http\Livewire\Classes\LivewireClasses;
 use App\Http\Livewire\Classes\LivewireClassesShow;
+use App\Http\Livewire\Classes\LivewireClassesTermMark;
 use App\Http\Livewire\Library\LivewireLibrarySession;
 use App\Http\Livewire\Payments\LivewirePayments;
 use App\Http\Livewire\Slots\SlotsLivewire;
@@ -61,6 +62,7 @@ Route::middleware([
     Route::get('/academic_year/{id}', LivewireAcademicYearShow::class)->name('ay.show');
     Route::get('/classes', LivewireClasses::class)->name('classes');
     Route::get('/classes/{classroom_id}/', LivewireClassesShow::class)->name('class.show');
+    Route::get('/classes/{classroom_id}/term/{$term_id}/exam/marks', LivewireClassesTermMark::class)->name('class.term.marks');
     Route::get('classes/{classroom_id}/attendance',LivewireAttendance::class)->name('class.attendance');
 
     Route::get('/subjects', LivewireSubjects::class)->name('subjects');

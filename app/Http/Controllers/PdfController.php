@@ -29,8 +29,8 @@ class PdfController extends Controller
             ->join('class_levels', 'class_levels.id', '=', 'exam_time_tables.level_id')
             ->join('subjects', 'subjects.id', '=', 'exam_time_tables.subject_id')
             ->join('academic_terms', 'academic_terms.id', '=', 'exam_time_tables.term_id')
-            // ->where('exam_time_tables.term_id',$term_id)
-            // ->where('subject_papers.classroom_type_id',$class_id)
+            ->where('exam_time_tables.term_id',$term_id)
+            ->where('subject_papers.classroom_type_id',$class_id)
             ->select('exam_time_tables.*', 'subjects.name AS subject_name', 'class_levels.name As level_name', 'subject_papers.paper As paper_paper', 'academic_terms.name As term_name', 'class_room_types.name as classroom_name', 'class_room_types.id as classroom_id')
             // ->orderBy('exam_time_tables.date','desc')
             ->get();

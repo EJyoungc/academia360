@@ -46,10 +46,26 @@ class BotController extends Controller
         ]);
 
         if (isset($request['message']['chat']['id'])) {
-            $response = Telegram::sendMessage([
-                'chat_id' => $request['message']['chat']['id'],
-                'text' => 'Hello World'
-            ]);
+            
+            $message = $request['message']['text'];
+            $chat_id = $request['message']['chat']['id'];
+            switch ($message) {
+                case '/year':
+                    # code...
+                    $response = Telegram::sendMessage([
+                        'chat_id' => $chat_id,
+                        'text' => 'Hello World'
+                    ]);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+
+
+
+
         }
 
 
