@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
+use App\Models\AcademicYearStudentLog;
 use App\Models\Classroom;
 use App\Models\ClassRoomType;
 // use DefStudio\Telegraph\Keyboard\Button;
@@ -147,7 +148,7 @@ class BotController extends Controller
             // Handle different options based on the custom data
             switch ($model) {
                 case "classrooms":
-                    Log::channel('telegram')->debug('switch', [
+                    Log::channel('telegram')->debug('classroom', [
                         // 'classroomtype' => $classroomtype,
                         // "classroom" => Classroom::where('classroom_id',$id)->get()??'',
                         // 'chat_id'=>$chat_id, 
@@ -156,7 +157,7 @@ class BotController extends Controller
                     $classrooms = Classroom::where('classroom_type_id', $id)->orderBy('name', 'asc')->get();
                     $buttons = [];
 
-                    Log::channel('telegram')->debug('switch', [
+                    Log::channel('telegram')->debug('switch classrooms', [
                         // 'classroomtype' => $classroomtype,
                         // "classroom" => $classrooms,
                         // 'chat_id'=>$chat_id, 
@@ -178,9 +179,44 @@ class BotController extends Controller
                     ]);
 
                     break;
-                    // case 'option_2_data':
-                    //     $text = 'You selected Option 2.';
-                    //     break;
+                    case 'students':
+                        
+
+                        Log::channel('telegram')->debug('students', [
+                            // 'classroomtype' => $classroomtype,
+                            // "classroom" => Classroom::where('classroom_id',$id)->get()??'',
+                            // 'chat_id'=>$chat_id, 
+                        ]);
+                        $classroom = Classroom::find($id);
+                        $classStudents = AcademicYearStudentLog::where('classroom_id', $id)->where('status','current')->get();
+                        $buttons = [];
+    
+                        Log::channel('telegram')->debug('switch student', [
+                            // 'classroomtype' => $classroomtype,
+                            // "classroom" => $classrooms,
+                            // 'chat_id'=>$chat_id, 
+                        ]);
+    
+                        foreach ($classStudents as  $student) {
+                            array_push($buttons, ['text' => " 🎓 $student->student->name", "callback_data" => "students  $student->student_id"]);
+                        }
+                        $buttonsInRow = 2;
+                        $keyboard = [
+    
+                            'inline_keyboard' => array_chunk($buttons, $buttonsInRow),
+                        ];
+                        $response = Telegram::sendMessage([
+                            'chat_id' => $chat_id,
+                            'text' => " Hey 😊 👋' *$full_name* *Here are the Class Rooms in $classroom->name  you wanted*👇  ",
+                            'parse_mode' => 'Markdown',
+                            'reply_markup' => json_encode($keyboard),
+                        ]);
+
+
+
+
+
+                        break;
                     // case 'option_3_data':
                     //     $text = 'You selected Option 3.';
                     //     break;
