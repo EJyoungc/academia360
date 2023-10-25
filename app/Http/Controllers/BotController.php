@@ -64,10 +64,10 @@ class BotController extends Controller
                 // 'all' => $request->all(),
 
             ]);
-            // $this->selectoption(
-            //     $request['callback_query']['message']['chat']['id'],
-            //     $request['callback_query']['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'],
-            //     $request['callback_query']['data']);
+            $this->selectoption(
+                $request['callback_query']['message']['chat']['id'],
+                $request['callback_query']['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'],
+                $request['callback_query']['data']);
         }
 
         if (isset($request['message']['chat']['id'])) {
