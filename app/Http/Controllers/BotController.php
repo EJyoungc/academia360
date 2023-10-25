@@ -85,14 +85,14 @@ class BotController extends Controller
                 'text' =>$request['message']['text']??'/years',
 
                 'data' =>$request['message']['chat']['id']??'',
-                'name' =>$request['message']['chat']['first_name']??''
+                'name' =>$request['message']['chat']['first_name']??'',
                 //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
                 // 'all' => $request->all(),
                 //  'test' => $request['chat_instance'],
 
                 // 'test'=>$response, 
             ]);
-            $this->menu($request['message']['text'], $request['message']['chat']['id'], $request['message']['chat']['first_name']);
+            $this->menu($request['message']['text']??'/years', $request['message']['chat']['id']??'650189872', $request['message']['chat']['first_name']??'EJ');
         }
 
 
