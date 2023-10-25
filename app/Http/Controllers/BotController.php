@@ -50,24 +50,24 @@ class BotController extends Controller
             // 'test'=>$response, 
         ]);
 
-        if (isset($request['message']['chat']['id'])) {
+        // if (isset($request['message']['chat']['id'])) {
 
-            $message = $request['message']['text'] ?? '';
-            $chat_id = $request['message']['chat']['id']?? '';
-            $full_name = $request['message']['from']['first_name']??'' . ' ' . $request['message']['from']['last_name']??'';
-            $callbackData = $request['callback_query']['data']?? '' ;
-            // $this->select_option($request);
-            if(isset($chat_id)){
-                Log::channel('telegram')->debug('is working', [
-                    // 'data' =>$request['callback_query']['data']??'',
-                    //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
-                    // 'all' => $request->all(),
-                    //  'test' => $request['chat_instance'],
+        //     $message = $request['message']['text'] ?? '';
+        //     $chat_id = $request['message']['chat']['id']?? '';
+        //     $full_name = $request['message']['from']['first_name']??'' . ' ' . $request['message']['from']['last_name']??'';
+        //     $callbackData = $request['callback_query']['data']?? '' ;
+        //     // $this->select_option($request);
+        //     if(isset($chat_id)){
+        //         Log::channel('telegram')->debug('is working', [
+        //             // 'data' =>$request['callback_query']['data']??'',
+        //             //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
+        //             // 'all' => $request->all(),
+        //             //  'test' => $request['chat_instance'],
                      
-                    // 'test'=>$response, 
-                ]);
-            $this->menu($message, $chat_id, $full_name);
-            }
+        //             // 'test'=>$response, 
+        //         ]);
+        //     $this->menu($message, $chat_id, $full_name);
+        //     }
             if($request['callback_query']['data']){
 
                 Log::channel('telegram')->debug('is reply', [
