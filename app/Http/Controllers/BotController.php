@@ -42,47 +42,48 @@ class BotController extends Controller
 
 
         Log::channel('telegram')->debug('Data feed', [
-            'data' =>$request['callback_query']['data']??'',
-             'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
-             
+            'data' => $request['callback_query']['data'] ?? '',
+            'chat_id' => $request['callback_query']['message']['chat']['id'] ?? '',
+
         ]);
 
-        if (isset($request['message']['chat']['id'])) {
+        $message = $request['message']['text'] ?? '';
+        $chat_id = $request['message']['chat']['id'] ?? '';
+        $full_name = $request['message']['from']['first_name'] ?? '' . ' ' . $request['message']['from']['last_name'] ?? '';
+        $callbackData = $request['callback_query']['data'] ?? '';
 
-            $message = $request['message']['text'] ?? '';
-            $chat_id = $request['message']['chat']['id']?? '';
-            $full_name = $request['message']['from']['first_name']??'' . ' ' . $request['message']['from']['last_name']??'';
-            $callbackData = $request['callback_query']['data']?? '' ;
+        
+
+
             // $this->select_option($request);
-            if(isset($chat_id)){
+            if (isset($chat_id)) {
                 Log::channel('telegram')->debug('is working', [
                     // 'data' =>$request['callback_query']['data']??'',
                     //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
                     // 'all' => $request->all(),
                     //  'test' => $request['chat_instance'],
-                     
+
                     // 'test'=>$response, 
                 ]);
-            // $this->menu($message, $chat_id, $full_name);
+                // $this->menu($message, $chat_id, $full_name);
             }
-            if($request['callback_query']['data']){
+
+            if ($request['callback_query']['data']) {
 
                 Log::channel('telegram')->debug('is reply', [
                     // 'data' =>$request['callback_query']['data']??'',
                     //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
                     // 'all' => $request->all(),
                     //  'test' => $request['chat_instance'],
-                     
+
                     // 'test'=>$response, 
                 ]);
-            // $this->selectoption(
-            //     $request['callback_query']['message']['chat']['id'],
-            //     $request['callback_query']['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'],
-            //     $request['callback_query']['data']);
+                // $this->selectoption(
+                //     $request['callback_query']['message']['chat']['id'],
+                //     $request['callback_query']['message']['from']['first_name'] . ' ' . $request['message']['from']['last_name'],
+                //     $request['callback_query']['data']);
             }
-        
-
-        }
+    
 
 
         // Log::channel('telegram')->debug('info not selected',[$response]);
@@ -114,7 +115,7 @@ class BotController extends Controller
 
 
 
-    public function selectoption($chat_id,$full_name,$callbackData)
+    public function selectoption($chat_id, $full_name, $callbackData)
     {
 
         Log::channel('telegram')->debug('selected option', [
@@ -126,7 +127,7 @@ class BotController extends Controller
         // $chat_id = $data['message']['chat']['id'];
         // $full_name = $data['message']['from']['first_name'] . ' ' . $data['message']['from']['last_name'];
         if (isset($callbackData)) {
-            
+
             list($model, $id) = explode(' ', $callbackData);
 
             // $chatId = $data['callback_query']['message']['chat']['id'];
@@ -154,12 +155,12 @@ class BotController extends Controller
                     ]);
 
                     break;
-                // case 'option_2_data':
-                //     $text = 'You selected Option 2.';
-                //     break;
-                // case 'option_3_data':
-                //     $text = 'You selected Option 3.';
-                //     break;
+                    // case 'option_2_data':
+                    //     $text = 'You selected Option 2.';
+                    //     break;
+                    // case 'option_3_data':
+                    //     $text = 'You selected Option 3.';
+                    //     break;
                 default:
                     $text = 'Invalid selection.';
                     break;
