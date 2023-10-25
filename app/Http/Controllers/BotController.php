@@ -51,10 +51,11 @@ class BotController extends Controller
         $chat_id = $request['chat_id'] ?? '';
         $name = $request['name']?? '';
 
-        $this->selectoption(
-            $chat_id,
-            $name,
-            $data);
+        // $this->selectoption(
+        //     $chat_id,
+        //     $name,
+        //     $data);
+            $this->menu('/years',$chat_id,$name);
 
 
         Log::channel('telegram')->debug('Data feed', [
