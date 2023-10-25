@@ -70,7 +70,7 @@ class BotController extends Controller
                         'chat_id' => $chat_id,
                         // 'photo' => public_path("bot/bot.jpg"),
                         // 'caption' => "Hello  *$full_name* ",
-                        'text' => " 😊  🤖 👋' *$full_name* \n\n 👇 *Select Academic Class :*  ",
+                        'text' => " Hey 😊 👋' *$full_name* *Here are the Academic  Classes you wanted*👇  ",
                         'parse_mode' => 'Markdown',
                         'reply_markup' => json_encode($keyboard),
                     ]);
