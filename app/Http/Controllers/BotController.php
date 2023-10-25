@@ -184,7 +184,7 @@ class BotController extends Controller
 
 
                 Log::channel('telegram')->debug('students', [
-                    // 'classroomtype' => $classroomtype,
+                    'id' => $id,
                     // "classroom" => Classroom::where('classroom_id',$id)->get()??'',
                     // 'chat_id'=>$chat_id, 
                 ]);
