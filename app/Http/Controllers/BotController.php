@@ -46,14 +46,14 @@ class BotController extends Controller
         // $chat_id = $request['message']['chat']['id'] ?? '';
         // $full_name = $request['message']['from']['first_name'] ?? '' . ' ' . $request['message']['from']['last_name'] ?? '';
         // $callbackData = $request['callback_query']['data'] ?? '';
-        // $data = $request['data'] ?? '';
-        // $chat_id = $request['chat_id'] ?? '';
-        // $name = $request['name']?? '';
+        $data = $request['data'] ?? '';
+        $chat_id = $request['chat_id'] ?? '';
+        $name = $request['name']?? '';
 
-        // $this->selectoption(
-        //     $chat_id,
-        //     $name,
-        //     $data);
+        $this->selectoption(
+            $chat_id,
+            $name,
+            $data);
 
 
         Log::channel('telegram')->debug('Data feed', [
@@ -147,11 +147,11 @@ class BotController extends Controller
             // Handle different options based on the custom data
             switch ($model) {
                 case "classrooms":
-                    // Log::channel('telegram')->debug('switch', [
-                    //     // 'classroomtype' => $classroomtype,
-                    //     // "classroom" => Classroom::where('classroom_id',1)->get()??'',
-                    //     // 'chat_id'=>$chat_id, 
-                    // ]);
+                    Log::channel('telegram')->debug('switch', [
+                        // 'classroomtype' => $classroomtype,
+                        // "classroom" => Classroom::where('classroom_id',$id)->get()??'',
+                        // 'chat_id'=>$chat_id, 
+                    ]);
                     $classroomtype = ClassRoomType::find($id);
                     $classrooms = Classroom::where('classroom_type_id', $id)->orderBy('name', 'asc')->get();
                     $buttons = [];
