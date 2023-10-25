@@ -89,6 +89,12 @@ class BotController extends Controller
 
     public function selectoption($data)
     {
+
+        Log::channel('telegram')->debug('selected option', [
+            'testit' => $data,
+            // 'test' => Telegram::getWebhookUpdate(),
+            // 'test'=>$response, 
+        ]);
         $message = $data['message']['text'];
         $chat_id = $data['message']['chat']['id'];
         $full_name = $data['message']['from']['first_name'] . ' ' . $data['message']['from']['last_name'];
