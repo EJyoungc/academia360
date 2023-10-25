@@ -72,9 +72,7 @@ class BotController extends Controller
                 // 'data' =>$request['callback_query']['data']??'',
                 //  'chat_id' =>$request['callback_query']['message']['chat']['id']??'',
                 // 'all' => $request->all(),
-                //  'test' => $request['chat_instance'],
 
-                // 'test'=>$response, 
             ]);
             $this->selectoption(
                 $request['callback_query']['message']['chat']['id'],
